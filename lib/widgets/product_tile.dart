@@ -5,7 +5,7 @@ import '../providers/cart_provider.dart';
 
 class ProductTile extends StatelessWidget {
   final Product product;
-  ProductTile(this.product);
+  const ProductTile(this.product, {super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../models/product.dart';
 import '../services/api_service.dart';
 import '../widgets/product_tile.dart';
@@ -14,7 +15,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
   List<Product> allProducts = [];
   List<Product> displayedProducts = [];
   String searchQuery = '';
-  String selectedCategory = '';
+  String selectedCategory = ''; // Track the selected category
 
   @override
   void initState() {
@@ -39,7 +40,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
 
     setState(() {
       searchQuery = query;
-      selectedCategory = category;
+      selectedCategory = category; // Update selected category
       displayedProducts = filtered;
     });
   }
@@ -77,6 +78,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
       ),
       drawer: FilterDrawer(
         categories: ['electronics', 'jewelery', "men's clothing", "women's clothing"],
+        selectedCategory: selectedCategory, // Pass the selected category
         onSelect: (category) => filterProducts(searchQuery, category),
       ),
       body: displayedProducts.isEmpty
